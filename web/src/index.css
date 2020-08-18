@@ -1,0 +1,17 @@
+/* GLOBAL STYLES */
+:root {
+	--main-panetone-color: #660516;
+	--main-red-color: #b3050f;
+	--main-yellow-color: #ffc91f;
+	--dark-grey-color: #384551;
+	--light-grey-color: #6e878a;
+	font-size: 10px;
+}
+
+/* Reset */
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
