@@ -1,0 +1,8 @@
+.Descontrolada {
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	justify-content: center;
+	align-items: top;
+	background-color: var(--dark-grey-color);
+}

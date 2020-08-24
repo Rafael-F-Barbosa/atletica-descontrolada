@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 
-import Descontrolada from './containers/Descontrolada';
-
-ReactDOM.render(
-	<React.StrictMode>
-		<Descontrolada />
-	</React.StrictMode>,
-	document.getElementById('root')
+const app = (
+	<BrowserRouter>
+		<App />
+	</BrowserRouter>
 );
+
+ReactDOM.render(app, document.getElementById('root'));
