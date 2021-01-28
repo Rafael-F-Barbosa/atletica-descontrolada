@@ -1,0 +1,34 @@
+.Toolbar {
+	background-color: var(--main-panetone-color);
+	align-items: center;
+	display: flex;
+	width: 100%;
+	height: 6rem;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 0 3rem;
+}
+.Center {
+	flex: 1 1 auto;
+	display: flex;
+	justify-content: center;
+	max-width: 1300px;
+	height: 100%;
+}
+
+.Logo{
+	flex: 1 1 auto;
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+}
+.DesktopOnly{
+	flex: 1 1 auto;
+	justify-content: flex-end;
+}
+
+@media (max-width: 719px){
+    .DesktopOnly{
+        display: none;
+    }
+}

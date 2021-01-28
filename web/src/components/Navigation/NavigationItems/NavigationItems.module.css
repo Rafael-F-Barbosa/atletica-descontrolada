@@ -1,0 +1,24 @@
+.Navigation ul {
+	flex: 1 1 auto;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	max-width: 1000px;
+}
+.Navigation ul div {
+	flex: 1 1 auto;
+	display: flex;
+	justify-content: space-around;
+}
+
+
+@media (max-width: 719px){
+    .Navigation ul{
+				display: flex;
+				flex-direction: column;
+				padding-left: 10%;
+		}
+		
+}
+
+

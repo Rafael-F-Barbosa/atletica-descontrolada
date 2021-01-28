@@ -1,0 +1,21 @@
+.NavigationItem a{
+    flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	color: white;
+	font-size: 1.8rem;
+	height: 6rem;
+    font-family: 'Roboto', sans-serif;
+}
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItema a.active {
+	color: var(--main-yellow-color);
+}
+
+
+@media (max-width: 719px){
+    .NavigationItem a{
+				color: var(--main-panetone-color);
+    }
+}
