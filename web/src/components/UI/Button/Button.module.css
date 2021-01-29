@@ -1,0 +1,16 @@
+.Button {
+  padding: 20px 40px;
+  background: none;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 3px;
+  cursor: pointer;
+  outline: none;
+}
+.Button:hover{
+  transition: 1s;
+  transform: scale(1.08);
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem #A9A9A9;
+  border-radius: 0.6rem;
+}
