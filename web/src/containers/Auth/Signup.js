@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
@@ -9,17 +8,30 @@ import updateObject from '../../utility/updateObject';
 import checkValidity from '../../utility/checkValidity';
 import * as actions from '../../store/actions/index'
 
-import classes from './Auth.module.css';
+import classes from './Signup.module.css';
 
 
-class Auth extends Component {
+class Signup extends Component {
 	state = {
 		controls: {
+      name: {
+        elementType: 'input',
+				elementConfig: {
+					type: 'text',
+					placeholder: 'nome'
+				},
+				value: '',
+				validation: {
+					required: true,
+				},
+				valid: false,
+				touched: false
+			},
 			email: {
-				elementType: 'input',
+        elementType: 'input',
 				elementConfig: {
 					type: 'email',
-					placeholder: 'mariazinha@gmail.com'
+					placeholder: 'email'
 				},
 				value: '',
 				validation: {
@@ -42,22 +54,42 @@ class Auth extends Component {
 				},
 				valid: false,
 				touched: false
-			}
+      },
+      confirmPassword: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'password',
+					placeholder: 'repita a senha'
+				},
+				value: '',
+				validation: {
+					required: true,
+          minLength: 6, 
+          isEqual: true
+				},
+				valid: false,
+				touched: false
+      }
 		}
 	};
 	inputChangedHandler = (event, controlName) => {
 		const updatedControls = updateObject(this.state.controls, {
 			[controlName]: updateObject(this.state.controls[controlName], {
 				value: event.target.value,
-				valid: checkValidity(event.target.value, this.state.controls[controlName].validation),
+				valid: checkValidity(event.target.value, this.state.controls[controlName].validation, this.state.controls.password.value),
 				touched: true
 			})
 		});
 		this.setState({ controls: updatedControls });
   };
   submitHandler = (event) => {
-		event.preventDefault();
-    this.props.onLogin(this.state.controls.email.value, this.state.controls.password.value)
+    event.preventDefault();
+    const signUpData = {
+      name: this.state.controls.name.value,
+      email:this.state.controls.email.value,
+      password: this.state.controls.password.value
+    }
+    this.props.onSignUp(signUpData)
   }
 
 	render() {
@@ -70,7 +102,7 @@ class Auth extends Component {
 		}
 		const form = formElementsArray.map((formElement) => (
 			<Input
-				key={formElement.id}
+        key={formElement.id}
 				inputType={formElement.config.elementType}
 				elementConfig={formElement.config.elementConfig}
 				value={formElement.config.value}
@@ -81,17 +113,15 @@ class Auth extends Component {
 					this.inputChangedHandler(event, formElement.id);
 				}}
 			/>
-		));
+    ));
+    
 		return (
 			<div className={classes.Auth}>
-				<h1 className={classes.Title}>Login</h1>
+				<h1 className={classes.Title}>Cadastro</h1>
 				<form onSubmit={this.submitHandler}>
 					{form}
-					<Button>Entrar</Button>
+					<Button>Cadastrar</Button>
 				</form>
-				<NavLink className={classes.changeAuth} to="/sign-up">
-					Alternar para cadastro.
-				</NavLink>
 			</div>
 		);
 	}
@@ -105,9 +135,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return{
-    onLogin: (email, password) => dispatch(actions.login(email, password))
+    onSignUp: (signUpData) => dispatch(actions.signup(signUpData))
   }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

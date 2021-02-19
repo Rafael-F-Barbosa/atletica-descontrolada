@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import classes from './NavigationItems.module.css';
 import NavigationItem from './NavigationItem/NavigationItem';
@@ -16,12 +17,28 @@ const navigation = (props) => {
 				<NavigationItem link={'/parties'} exact>
 					Rolês
 				</NavigationItem>
-				<NavigationItem link={'/login'} exact>
-					Entrar
-				</NavigationItem>
+				{props.logggedIn ? (
+					<NavigationItem link={'/logout'} exact>
+						Logout
+					</NavigationItem>
+				) : (
+					<Fragment>
+						<NavigationItem link={'/login'} exact>
+							Entrar
+						</NavigationItem>
+						<NavigationItem link={'/sign-up'} exact>
+							Cadastrar
+						</NavigationItem>
+					</Fragment>
+				)}
 			</ul>
 		</nav>
 	);
 };
 
-export default navigation;
+const mapStateToProps = (state) => {
+	return {
+		logggedIn: state.login.token
+	};
+};
+export default connect(mapStateToProps)(navigation);

@@ -1,4 +1,4 @@
-function checkValidity(value, rules){
+function checkValidity(value, rules, password=null){
 	let isValid = true;
 	if (rules.required) {
 		isValid = value.trim() !== '' && isValid;
@@ -8,6 +8,10 @@ function checkValidity(value, rules){
 	}
 	if(rules.isEmail){
 		isValid = value.match(/\S+@\S+\.\S+/)
+	}
+	if(rules.isEqual){
+		console.log(password, value)
+		isValid = value === password
 	}
 	return isValid;
 };

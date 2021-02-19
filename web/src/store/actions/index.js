@@ -1,1 +1,1 @@
-export { login } from './auth'
+export { login, signup } from './auth'
