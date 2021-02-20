@@ -135,7 +135,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return{
-    onSignUp: (signUpData) => dispatch(actions.signup(signUpData))
+    onSignUp: (signUpData) => dispatch(actions.signUp(signUpData))
   }
 }
 

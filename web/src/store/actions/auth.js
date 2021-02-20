@@ -30,17 +30,18 @@ export const login = (email, password) => {
 			password: password,
 			returnSecureToken: true
 		};
-		const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.REACT_APP_API_KEY;
+		const url =
+			'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+			process.env.REACT_APP_API_KEY;
 		axios
 			.post(url, loginData)
 			.then((response) => {
-        // const expirationDate = new Date()
-        console.log('logado', response)
+				// const expirationDate = new Date()
+				console.log('logado', response);
 				dispatch(loginSuccess(response.data.idToken, response.data.localId));
-      })
-      
+			})
 			.catch((error) => {
-        console.log(error)
+				console.log(error);
 				dispatch(loginFail(error.response.data.error));
 			});
 	};
@@ -52,15 +53,36 @@ export const signupStart = () => {
 	};
 };
 
-export const signup = (signupData) => {
-	return ( dispatch ) =>{
+export const signUpSuccess = () => {
+	return {
+		type: actionTypes.SIGNUP_SUCCESS
+	};
+};
+export const signUpFail = (error) => {
+	return {
+		type: actionTypes.SIGNUP_FAIL,
+		error: error
+	};
+};
+
+export const signUp = (data) => {
+	return (dispatch) => {
 		dispatch(signupStart());
 		const signUpData = {
-			email: signupData.email,
-			password: signupData.password
-		}
-		const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.REACT_APP_API_KEY;
-		console.log('AGORA FALTA CRIAR DE FATO NOVO USUÁRIO')
-
-	}
-}
+			email: data.email,
+			password: data.password,
+			returnSecureToken: true
+		};
+		const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.REACT_APP_API_KEY;
+		axios
+			.post(url, signUpData)
+			.then((response) => {
+				console.log('criado', response);
+				dispatch(signUpSuccess());
+			})
+			.catch((error) => {
+				console.log('Deu ruim.');
+				dispatch(signUpFail(error.response.data.error));
+			});
+	};
+};
