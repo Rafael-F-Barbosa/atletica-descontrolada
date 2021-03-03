@@ -29,6 +29,15 @@ const loginFail = (state, action) => {
     loading: false
   })
 }
+const signUpStart = (state, action) => {
+  return updateObject(state, {error: null, loading: true})
+}
+const signUpSuccess = (state, action) => {
+  return updateObject(state, {error: null, loading: false})
+}
+const signUpFail = (state, action) => {
+  return updateObject(state, {error: action.error, loading: false})
+}
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
@@ -38,6 +47,12 @@ const reducer = (state = initialState, action) => {
       return loginSuccess(state, action)
     case actionTypes.LOGIN_FAIL:
       return loginFail(state, action)
+    case actionTypes.SIGNUP_START:
+      return signUpStart(state, action)
+    case actionTypes.SIGNUP_SUCCESS:
+      return signUpSuccess(state, action)
+    case actionTypes.SIGNUP_FAIL:
+      return signUpFail(state, action)
     default:
       return state
   }

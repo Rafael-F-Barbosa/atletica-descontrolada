@@ -4,13 +4,13 @@ import { NavLink } from 'react-router-dom';
 
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 import updateObject from '../../utility/updateObject';
 import checkValidity from '../../utility/checkValidity';
-import * as actions from '../../store/actions/index'
+import * as actions from '../../store/actions/index';
 
 import classes from './Auth.module.css';
-
 
 class Auth extends Component {
 	state = {
@@ -54,13 +54,15 @@ class Auth extends Component {
 			})
 		});
 		this.setState({ controls: updatedControls });
-  };
-  submitHandler = (event) => {
+	};
+	submitHandler = (event) => {
 		event.preventDefault();
-    this.props.onLogin(this.state.controls.email.value, this.state.controls.password.value)
-  }
+		this.props.onLogin(this.state.controls.email.value, this.state.controls.password.value);
+	};
 
 	render() {
+		console.log(this.props.loading);
+
 		const formElementsArray = [];
 		for (let key in this.state.controls) {
 			formElementsArray.push({
@@ -82,11 +84,18 @@ class Auth extends Component {
 				}}
 			/>
 		));
+
+		let formOrSpinner = form;
+		if(this.props.loading){
+			formOrSpinner = <Spinner />
+		}
+		
+
 		return (
 			<div className={classes.Auth}>
 				<h1 className={classes.Title}>Login</h1>
 				<form onSubmit={this.submitHandler}>
-					{form}
+					{formOrSpinner}
 					<Button>Entrar</Button>
 				</form>
 				<NavLink className={classes.changeAuth} to="/sign-up">
@@ -97,17 +106,15 @@ class Auth extends Component {
 	}
 }
 
-
 const mapStateToProps = (state) => {
-  return {
-    loading: state.login.loading
-  }
-}
+	return {
+		loading: state.login.loading
+	};
+};
 const mapDispatchToProps = (dispatch) => {
-  return{
-    onLogin: (email, password) => dispatch(actions.login(email, password))
-  }
-}
-
+	return {
+		onLogin: (email, password) => dispatch(actions.login(email, password))
+	};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);
