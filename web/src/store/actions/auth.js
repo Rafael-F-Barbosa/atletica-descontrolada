@@ -86,3 +86,9 @@ export const signUp = (data) => {
 			});
 	};
 };
+
+export const logout = () =>{
+	return {
+		type: actionTypes.LOGOUT
+	}
+}

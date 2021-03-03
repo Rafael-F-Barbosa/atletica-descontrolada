@@ -10,7 +10,7 @@ import updateObject from '../../utility/updateObject';
 import checkValidity from '../../utility/checkValidity';
 import * as actions from '../../store/actions/index';
 
-import classes from './Auth.module.css';
+import classes from './Login.module.css';
 
 class Auth extends Component {
 	state = {
