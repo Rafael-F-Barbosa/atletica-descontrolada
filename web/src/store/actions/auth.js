@@ -27,18 +27,15 @@ export const login = (email, password) => {
 		dispatch(loginStart());
 		const loginData = {
 			email: email,
-			password: password,
-			returnSecureToken: true
+			password: password
 		};
-		const url =
-			'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-			process.env.REACT_APP_API_KEY;
+		const url = process.env.REACT_APP_BASE_URL + '/auth/login';
+		console.log(url)
 		axios
 			.post(url, loginData)
 			.then((response) => {
-				// const expirationDate = new Date()
-				console.log('logado', response);
-				dispatch(loginSuccess(response.data.idToken, response.data.localId));
+				console.log(response)
+				dispatch(loginSuccess(response.data.token, response.data.userId));
 			})
 			.catch((error) => {
 				console.log(error);
@@ -71,9 +68,9 @@ export const signUp = (data) => {
 		const signUpData = {
 			email: data.email,
 			password: data.password,
-			returnSecureToken: true
+			name: data.name
 		};
-		const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.REACT_APP_API_KEY;
+		const url = process.env.REACT_APP_BASE_URL + '/auth/sign-up';
 		axios
 			.post(url, signUpData)
 			.then((response) => {
