@@ -18,9 +18,14 @@ const navigation = (props) => {
 					Rolês
 				</NavigationItem>
 				{props.logggedIn ? (
-					<NavigationItem link={'/logout'} exact>
-						Logout
-					</NavigationItem>
+					<Fragment>
+						<NavigationItem link={'/user'} exact>
+							User
+						</NavigationItem>
+						<NavigationItem link={'/logout'} exact>
+							Logout
+						</NavigationItem>
+					</Fragment>
 				) : (
 					<Fragment>
 						<NavigationItem link={'/login'} exact>

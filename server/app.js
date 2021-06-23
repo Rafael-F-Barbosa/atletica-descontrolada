@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 
 // App imports
 const authRoutes = require('./routes/auth')
+const userRoutes = require('./routes/user')
 
 // Create express apps
 const app = express()
@@ -22,6 +23,8 @@ app.use((req,res,next)=>{
 
 // Registering routes
 app.use('/auth', authRoutes)
+// Registering routes
+app.use('/user', userRoutes)
 
 // Error handling middleware
 app.use((error,req,res,next)=>{
