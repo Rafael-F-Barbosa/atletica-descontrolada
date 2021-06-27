@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Card from '../../components/UI/Card/Card';
 
 import updateObject from '../../utility/updateObject';
 import checkValidity from '../../utility/checkValidity';
@@ -92,7 +93,7 @@ class Auth extends Component {
 		
 
 		return (
-			<div className={classes.Auth}>
+			<Card className={classes.Auth}>
 				<h1 className={classes.Title}>Login</h1>
 				<form onSubmit={this.submitHandler}>
 					{formOrSpinner}
@@ -101,7 +102,7 @@ class Auth extends Component {
 				<NavLink className={classes.changeAuth} to="/sign-up">
 					Alternar para cadastro.
 				</NavLink>
-			</div>
+			</Card>
 		);
 	}
 }

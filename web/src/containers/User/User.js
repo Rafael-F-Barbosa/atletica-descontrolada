@@ -5,10 +5,12 @@ import { NavLink } from 'react-router-dom';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Card from '../../components/UI/Card/Card';
 
 import updateObject from '../../utility/updateObject';
 import checkValidity from '../../utility/checkValidity';
 import * as actions from '../../store/actions/index';
+
 
 import classes from './User.module.css';
 import axios from 'axios';
@@ -45,17 +47,10 @@ class User extends Component {
 
 
 		return (
-			<div className={classes.Auth}>
+			<Card>
 				<h1 className={classes.Title}>{this.state.name}</h1>
 				<h2>{this.state.email}</h2>
-				{/* <form onSubmit={this.submitHandler}>
-					{formOrSpinner}
-					<Button>Entrar</Button>
-				</form>
-				<NavLink className={classes.changeAuth} to="/sign-up">
-					Alternar para cadastro.
-				</NavLink> */}
-			</div>
+			</Card>
 		);
 	}
 }
