@@ -8,6 +8,7 @@ import Login from './containers/Auth/Login';
 import Signup from './containers/Auth/Signup';
 import Logout from './containers/Auth/Logout';
 import User from './containers/User/User';
+import Products from './containers/Products/Product';
 
 class App extends Component {
 	render() {
@@ -16,6 +17,7 @@ class App extends Component {
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/about" exact component={About} />
+					<Route path="/products" exact component={Products} />
 					<Route path="/login" exact component={Login} />
 					<Route path="/sign-up" exact component={Signup} />
 					<Route path="/user" exact component={User} />

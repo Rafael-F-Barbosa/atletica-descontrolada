@@ -93,7 +93,7 @@ class Auth extends Component {
 		
 
 		return (
-			<Card className={classes.Auth}>
+			<Card>
 				<h1 className={classes.Title}>Login</h1>
 				<form onSubmit={this.submitHandler}>
 					{formOrSpinner}

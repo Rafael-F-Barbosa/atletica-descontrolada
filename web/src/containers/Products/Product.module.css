@@ -1,0 +1,19 @@
+.Products{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.Products img{
+    width: 50%;
+}
+
+.Card{
+    width: 50%;
+}
+
+@media (max-width: 719px){
+    .Products{
+        display: flex;
+        flex-direction: column;
+        padding-left: 10%;
+	}
+}
