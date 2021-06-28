@@ -50,7 +50,6 @@ exports.login = async (req, res, next) => {
             userId: loadedUser._id.toString()},
             'somesupersecretesecret', {expiresIn: '2h'}
         )
-        console.log(token)
         res.status(200).json({
             token: token,
             userId: loadedUser._id.toString()

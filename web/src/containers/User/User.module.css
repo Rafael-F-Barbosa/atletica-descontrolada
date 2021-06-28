@@ -1,20 +1,10 @@
-.Auth{
-  display: flex;
-  min-width: 400px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 3rem;
-  border-radius: 0.6rem;
-  box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #A9A9A9
-}
-.Auth form{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+.UserImage{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid black;
 
+}
 .Title{
   color: var(--main-panetone-color);
   padding: 1.0em;

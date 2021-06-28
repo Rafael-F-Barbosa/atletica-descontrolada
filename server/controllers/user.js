@@ -5,7 +5,7 @@ exports.user = async (req, res, next) => {
     try {
         const user = await User.findById(userId)
         if (!user) {
-            const error = new Error('Could not find post.')
+            const error = new Error('Could not find user.')
             error.statusCode = 404
             throw error
         }

@@ -14,7 +14,11 @@ const user = new Schema({
     name: {
         type: String,
         required: true
-    }   
+    },
+    role:{
+        type: String,
+        default: "Nenhum"
+    }
 })
 
 module.exports = mongoose.model('User', user)

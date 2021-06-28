@@ -10,6 +10,7 @@ class User extends Component {
 	state = {
 		name: 'Name',
 		email: null,
+		role: null,
 		loading: false
 
 	};
@@ -20,9 +21,11 @@ class User extends Component {
 			.then((response) => {
 				const name = response.data.user.name
 				const email = response.data.user.email
+				const role = response.data.user.role
 				this.setState({
 					name: name,
-					email: email
+					email: email, 
+					role: role
 				})
 			}).catch(error => {
 				console.log('Ops')
@@ -31,16 +34,14 @@ class User extends Component {
 	}
 
 	render() {
-		// let formOrSpinner = undefined
-		// if (this.state.loading) {
-		// 	formOrSpinner = <Spinner />
-		// }
-
-
+		const userUrl = "https://avatars.githubusercontent.com/u/59183432?s=400&u=46341efa11c8339cbc376408f10d1cd2fce3246d&v=4"
 		return (
 			<Card>
+				<img className={classes.UserImage} src={userUrl} alt={this.state.name} />
 				<h1 className={classes.Title}>{this.state.name}</h1>
 				<h2>{this.state.email}</h2>
+				{(this.state.role !==  null)?<h2>Cargo: {this.state.role}</h2>: null}
+				
 			</Card>
 		);
 	}
