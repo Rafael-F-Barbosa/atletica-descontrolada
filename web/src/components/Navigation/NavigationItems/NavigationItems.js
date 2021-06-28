@@ -14,9 +14,6 @@ const navigation = (props) => {
 				<NavigationItem link={'/products'} exact>
 					Produtos
 				</NavigationItem>
-				<NavigationItem link={'/parties'} exact>
-					Rolês
-				</NavigationItem>
 				{props.logggedIn ? (
 					<Fragment>
 						<NavigationItem link={'/user'} exact>

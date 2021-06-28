@@ -11,13 +11,13 @@ const products = () => {
         <div className={classes.Products}>
             <Card>
                 <h1>Meia</h1>
-                <img src={productDescontrolada} alt="Product image" />
+                <img src={productDescontrolada} alt="Product images" />
                 <h2>R$ 15,00</h2>
                 <Button>Comprar</Button>
             </Card>
             <Card>
                 <h1>Meia</h1>
-                <img src={productDescontrolada} alt="Product image" />
+                <img src={productDescontrolada} alt="Product imagess" />
                 <h2>R$ 15,00</h2>
                 <Button>Comprar</Button>
             </Card>

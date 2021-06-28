@@ -1,31 +1,62 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Layout from './hoc/Layout/Layout';
 import Home from './containers/Home/Home';
-import About from './containers/About/About';
 import Login from './containers/Auth/Login';
 import Signup from './containers/Auth/Signup';
 import Logout from './containers/Auth/Logout';
 import User from './containers/User/User';
 import Products from './containers/Products/Product';
+import * as actions from './store/actions/index';
 
 class App extends Component {
+
+	componentDidMount() {
+		this.props.onTryAutoSignup();
+	}
+
 	render() {
-		return (
-			<Layout>
-				<Switch>
+		let routes = (
+			<Switch>
+				<Route path="/" exact component={Home} />
+				<Route path="/products" exact component={Products} />
+				<Route path="/login" exact component={Login} />
+				<Route path="/sign-up" exact component={Signup} />
+			</Switch>
+		)
+		if (this.props.isAuth) {
+			routes = (
+			<Switch>
 					<Route path="/" exact component={Home} />
-					<Route path="/about" exact component={About} />
 					<Route path="/products" exact component={Products} />
-					<Route path="/login" exact component={Login} />
-					<Route path="/sign-up" exact component={Signup} />
 					<Route path="/user" exact component={User} />
 					<Route path="/logout" exact component={Logout} />
+					<Redirect to="/"/>
 				</Switch>
-			</Layout>
+			)
+		}
+		return (
+			<Layout>
+				{routes}
+			</Layout >
 		);
 	}
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	return {
+		isAuth: state.login.token !== null
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onTryAutoSignup: () => dispatch(actions.checkLogin())
+	};
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

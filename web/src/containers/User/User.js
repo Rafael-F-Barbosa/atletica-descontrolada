@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
-import Spinner from '../../components/UI/Spinner/Spinner';
+// import Spinner from '../../components/UI/Spinner/Spinner';
 import Card from '../../components/UI/Card/Card';
-
-import updateObject from '../../utility/updateObject';
-import checkValidity from '../../utility/checkValidity';
-import * as actions from '../../store/actions/index';
-
 
 import classes from './User.module.css';
 import axios from 'axios';
@@ -40,10 +31,10 @@ class User extends Component {
 	}
 
 	render() {
-		let formOrSpinner = undefined
-		if (this.state.loading) {
-			formOrSpinner = <Spinner />
-		}
+		// let formOrSpinner = undefined
+		// if (this.state.loading) {
+		// 	formOrSpinner = <Spinner />
+		// }
 
 
 		return (
