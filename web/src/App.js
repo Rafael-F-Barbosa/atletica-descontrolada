@@ -9,6 +9,7 @@ import Signup from './containers/Auth/Signup';
 import Logout from './containers/Auth/Logout';
 import User from './containers/User/User';
 import Products from './containers/Products/Product';
+import AddProducts from './containers/Products/AddProduct';
 import * as actions from './store/actions/index';
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
 					<Route path="/products" exact component={Products} />
 					<Route path="/user" exact component={User} />
 					<Route path="/logout" exact component={Logout} />
+					<Route path="/add-product" exact component={AddProducts} />
 					<Redirect to="/"/>
 				</Switch>
 			)

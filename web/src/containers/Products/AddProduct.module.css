@@ -1,0 +1,15 @@
+.Auth {
+    background-color: blue;
+  }
+  
+  .Title{
+    color: var(--main-panetone-color);
+    padding: 1.0em;
+    text-transform: uppercase;
+  }
+  
+  .changeAuth{
+    font-size: 2rem;
+    color: var(--main-panetone-color);
+    padding: 1.0em;
+  }

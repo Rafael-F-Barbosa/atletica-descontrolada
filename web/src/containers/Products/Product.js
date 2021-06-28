@@ -5,13 +5,13 @@ import classes from './Product.module.css';
 import Card from '../../components/UI/Card/Card'
 import Button from '../../components/UI/Button/Button'
 
-import productDescontrolada from '../../assets/images/meia-image.png';
+import { Redirect, NavLink } from 'react-router-dom';
 
 class Products extends Component {
     state = {
         products: [],
-        loading: false
-
+        loading: false,
+        addProduct: false
     };
     componentDidMount() {
         const url = process.env.REACT_APP_BASE_URL + '/products'
@@ -26,7 +26,13 @@ class Products extends Component {
                 console.log(error)
             })
     }
+    onAddProductHandler(){
+        this.setState({addProduct: true})
+    }
     render() {
+        if(this.state.addProduct){
+            return (<Redirect to="add-product"/>)
+        }
         return (
             <div className={classes.ProductsPage}>
                 <div className={classes.Products}>
@@ -41,7 +47,7 @@ class Products extends Component {
                         })
                     }
                 </div>
-                    <Button>Adicionar produto</Button>
+                    <NavLink to="add-product">Add product</NavLink>
             </div>
         );
     }
