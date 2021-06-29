@@ -18,3 +18,20 @@ exports.user = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.users = (req,res,next) => {
+    console.log("ja foi? ")
+    User.find()
+    .then(users=>{
+        res.status(200).json({
+            message: 'Users fetched.',
+            users: users
+        })
+    })
+    .catch(err => {
+        if(!err.statusCode){
+            err.statusCode = 500
+        }
+        next(err)
+    })
+}

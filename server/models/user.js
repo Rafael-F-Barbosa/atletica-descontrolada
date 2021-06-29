@@ -18,6 +18,10 @@ const user = new Schema({
     role:{
         type: String,
         default: "Nenhum"
+    },
+    imageUrl:{
+        type: String,
+        default: "https://img.flaticon.com/icons/png/512/1998/1998728.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"
     }
 })
 

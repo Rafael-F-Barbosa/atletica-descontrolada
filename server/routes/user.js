@@ -8,7 +8,7 @@ const userController = require('../controllers/user')
 const router = express.Router() 
 
 // User routes
+router.get('/list', userController.users)
 router.get('/:userId', userController.user)
-
 
 module.exports = router

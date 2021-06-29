@@ -1,5 +1,21 @@
 const Product = require('../models/product')
 
+exports.products = (req,res,next) => {
+    Product.find()
+    .then(products=>{
+        res.status(200).json({
+            message: 'Products fetched.',
+            products: products
+        })
+    })
+    .catch(err => {
+        if(!err.statusCode){
+            err.statusCode = 500
+        }
+        next(err)
+    })
+}
+
 exports.addProducts = async (req, res, next) =>{
     const name = req.body.name
     const price = req.body.price
@@ -18,20 +34,4 @@ exports.addProducts = async (req, res, next) =>{
         }
         next(error)
     }
-}
-
-exports.products = (req,res,next) => {
-    Product.find()
-    .then(products=>{
-        res.status(200).json({
-            message: 'Products fetched.',
-            products: products
-        })
-    })
-    .catch(err => {
-        if(!err.statusCode){
-            err.statusCode = 500
-        }
-        next(err)
-    })
 }

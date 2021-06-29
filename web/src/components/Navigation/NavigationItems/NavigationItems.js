@@ -14,10 +14,13 @@ const navigation = (props) => {
 				<NavigationItem link={'/products'} exact>
 					Produtos
 				</NavigationItem>
+				<NavigationItem link={'/users'} exact>
+					Membros
+				</NavigationItem>
 				{props.logggedIn ? (
 					<Fragment>
 						<NavigationItem link={'/user'} exact>
-							User
+							Minha conta
 						</NavigationItem>
 						<NavigationItem link={'/logout'} exact>
 							Logout

@@ -1,0 +1,33 @@
+.Users {
+  margin: 20px;
+}
+ 
+.UsersUl {
+  list-style-type: none;
+  width: 500px;
+}
+ 
+.Title {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+ 
+.User img {
+  max-width: 150px;
+  max-height: 150px;
+  float: left;
+  margin: 0 15px 0 0;
+}
+ 
+.User p {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+ 
+.User {
+  padding: 10px;
+  overflow: auto;
+}
+ 
+.User:hover {
+  background: #eee;
+  cursor: pointer;
+}
