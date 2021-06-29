@@ -12,39 +12,53 @@ import checkValidity from '../../utility/checkValidity';
 import * as actions from '../../store/actions/index';
 
 import classes from './AddProduct.module.css';
+import axios from 'axios';
 
 class AddProduct extends Component {
 	state = {
 		controls: {
-			email: {
+			name: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'email',
-					placeholder: 'mariazinha@gmail.com'
+					type: 'text',
+					placeholder: 'Nome do produto'
 				},
 				value: '',
 				validation: {
-					required: true,
-					isEmail: true
+					required: true
 				},
 				valid: false,
 				touched: false
 			},
-			password: {
+			imageUrl: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'password',
-					placeholder: 'senha top'
+					type: 'url',
+					placeholder: 'image.com/produto.jpeg'
 				},
 				value: '',
 				validation: {
-					required: true,
-					minLength: 6
+					required: true
+				},
+				valid: false,
+				touched: false
+			},
+			price: {
+				elementType: 'input',
+				elementConfig: {
+					type: 'number',
+					placeholder: 10.15,
+					step: 0.01
+				},
+				value: '',
+				validation: {
+					required: true
 				},
 				valid: false,
 				touched: false
 			}
-		}
+		},
+		loading: false
 	};
 	inputChangedHandler = (event, controlName) => {
 		const updatedControls = updateObject(this.state.controls, {
@@ -58,12 +72,25 @@ class AddProduct extends Component {
 	};
 	submitHandler = (event) => {
 		event.preventDefault();
-		this.props.onLogin(this.state.controls.email.value, this.state.controls.password.value);
+		this.setState({ loading: true })
+		const url = process.env.REACT_APP_BASE_URL + '/products/add'
+		const name =this.state.controls.name.value
+		const price = this.state.controls.price.value
+		const imageUrl = this.state.controls.imageUrl.value 
+		axios.post(url,{
+			name: name,
+			price: price,
+			imageUrl: imageUrl
+		}).then((response)=>{
+			this.setState({loading:false})
+			console.log(response)
+		}).catch((error)=>{
+			console.log(error)
+		})
+
 	};
 
 	render() {
-		console.log(this.props.loading);
-
 		const formElementsArray = [];
 		for (let key in this.state.controls) {
 			formElementsArray.push({
@@ -87,21 +114,18 @@ class AddProduct extends Component {
 		));
 
 		let formOrSpinner = form;
-		if(this.props.loading){
+		if (this.props.loading) {
 			formOrSpinner = <Spinner />
 		}
-		
+
 
 		return (
 			<Card>
-				<h1 className={classes.Title}>Login</h1>
+				<h1 className={classes.Title}>Novo produto</h1>
 				<form onSubmit={this.submitHandler}>
 					{formOrSpinner}
-					<Button>Entrar</Button>
+					<Button>Criar Produto</Button>
 				</form>
-				<NavLink className={classes.changeAuth} to="/sign-up">
-					Alternar para cadastro.
-				</NavLink>
 			</Card>
 		);
 	}
