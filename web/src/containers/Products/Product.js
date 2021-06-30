@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect, NavLink } from 'react-router-dom';
 
 import classes from './Product.module.css';
 import Card from '../../components/UI/Card/Card'
 import Button from '../../components/UI/Button/Button'
+import Spinner from '../../components/UI/Spinner/Spinner'
 
-import { Redirect, NavLink } from 'react-router-dom';
 
 class Products extends Component {
     state = {
@@ -14,6 +15,7 @@ class Products extends Component {
         addProduct: false
     };
     componentDidMount() {
+        this.setState({ loading: true })
         const url = process.env.REACT_APP_BASE_URL + '/products'
         axios.get(url)
             .then((response) => {
@@ -21,20 +23,22 @@ class Products extends Component {
                 this.setState({
                     products: [...products]
                 })
+                this.setState({ loading: false })
             }).catch(error => {
-                console.log('Opsius')
+                this.setState({ loading: false })
                 console.log(error)
             })
     }
-    onAddProductHandler(){
-        this.setState({addProduct: true})
+    onAddProductHandler() {
+        this.setState({ addProduct: true })
     }
     render() {
-        if(this.state.addProduct){
-            return (<Redirect to="add-product"/>)
+        if (this.state.addProduct) {
+            return (<Redirect to="add-product" />)
         }
-        return (
-            <div className={classes.ProductsPage}>
+        let productsOrSpinner = <Spinner />
+        if (!this.state.loading) {
+            productsOrSpinner = (
                 <div className={classes.Products}>
                     {
                         this.state.products.map(product => {
@@ -47,11 +51,15 @@ class Products extends Component {
                         })
                     }
                 </div>
-                    <NavLink to="add-product">Add product</NavLink>
+            )
+        }
+        return (
+            <div className={classes.ProductsPage}>
+                {productsOrSpinner}
+                <NavLink to="add-product">Add product</NavLink>
             </div>
         );
     }
-
 };
 
 export default Products;

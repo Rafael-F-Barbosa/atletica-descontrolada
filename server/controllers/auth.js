@@ -11,6 +11,12 @@ exports.signup = async (req, res, next) => {
     const name = req.body.name
     console.log(req.body)
     try {
+        const hasEmailBeenUsed = await User.findOne({email: email})
+        if(hasEmailBeenUsed !== null){
+            const error = new Error("Email already used!")
+            error.statusCode = 403
+            throw error
+        }
         const hashedPw = await bcrypt.hash(password, 12)
         const user = new User({
             email: email,

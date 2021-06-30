@@ -90,8 +90,9 @@ class Auth extends Component {
 		if(this.props.loading){
 			formOrSpinner = <Spinner />
 		}
-		
 
+		throw new Error("Falha no login!")
+		
 		return (
 			<FormCard>
 				<h1 className={classes.Title}>Login</h1>
