@@ -2,13 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     box-sizing: border-box;
-    padding: 3rem;
-    border-radius: 0.6rem;
+    padding: 2rem;
+    margin: 2rem;
+    border: 3px solid #000;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;;
     box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #A9A9A9
 }
-.Card form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+.Card:hover {
+    background: #eee;
 }

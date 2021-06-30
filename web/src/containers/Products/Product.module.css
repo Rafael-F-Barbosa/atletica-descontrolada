@@ -1,21 +1,43 @@
 .ProductsPage{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .Products{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+
 .Products img{
-    width: 50%;
+    width: 35rem;
+    height: 35rem;
+    object-fit: contain;
+}
+.ProductsPage h1{
+    font-size: 4.5rem;
+    margin: 1rem 0;
+}
+.ProductsPage h2{
+    font-size: 3rem;
+    margin: 1rem 0;
 }
 
-.Card{
-    width: 50%;
+.ProductsPage a{
+    color: black;
+    font-size: 2rem;
+    margin: 1rem 0;
+    transition: 500ms;
+    text-transform: uppercase;
+}
+.ProductsPage a:hover{
+    transform: scale(1.05);
 }
 
-@media (max-width: 719px){
+
+@media (max-width: 900px){
     .Products{
         display: flex;
         flex-direction: column;
