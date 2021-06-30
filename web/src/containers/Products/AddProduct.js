@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import Card from '../../components/UI/Card/Card';
+import FormCard from '../../components/UI/FormCard/FormCard';
 
 import updateObject from '../../utility/updateObject';
 import checkValidity from '../../utility/checkValidity';
@@ -120,13 +120,13 @@ class AddProduct extends Component {
 
 
 		return (
-			<Card>
+			<FormCard>
 				<h1 className={classes.Title}>Novo produto</h1>
 				<form onSubmit={this.submitHandler}>
 					{formOrSpinner}
 					<Button>Criar Produto</Button>
 				</form>
-			</Card>
+			</FormCard>
 		);
 	}
 }

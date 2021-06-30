@@ -1,0 +1,25 @@
+.FormCard{
+    min-width: 35rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 3rem;
+    border-radius: 0.6rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #A9A9A9
+}
+.FormCard form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 500px){
+    .FormCard{
+        width: 100%;
+        padding: .5rem;
+        border: none;
+        box-shadow: none;
+    }
+		
+}
