@@ -20,7 +20,6 @@ exports.user = async (req, res, next) => {
 }
 
 exports.users = (req,res,next) => {
-    console.log("ja foi? ")
     User.find()
     .then(users=>{
         res.status(200).json({
