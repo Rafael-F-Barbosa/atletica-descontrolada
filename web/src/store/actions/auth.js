@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
+import {throwError} from './index'
 
 export const loginStart = () => {
 	return {
@@ -41,6 +42,7 @@ export const login = (email, password) => {
 			.catch((error) => {
 				console.log(error);
 				dispatch(loginFail(error.response.data.error));
+				dispatch(throwError())
 			});
 	};
 };
