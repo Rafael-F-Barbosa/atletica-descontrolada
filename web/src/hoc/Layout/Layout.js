@@ -18,14 +18,12 @@ class Layout extends Component {
 	};
 
 	onSideDrawerToggleHandler = () => {
-		console.log(this.state);
 		this.setState((prevState) => {
 			return { showSideDrawer: !prevState.showSideDrawer };
 		});
 	};
 
 	render() {
-		console.log("Layout:", this.props.error)
 		return (
 			<Fragment>
 				<Toolbar drawerToggleClicked={this.onSideDrawerToggleHandler} />

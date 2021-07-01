@@ -50,7 +50,7 @@ mongoose.connect(mongoUrl,
     app.listen(process.env.PORT || 8080)
 }).catch((error)=>{
     console.log("Failed to connect to database.")
-    // console.log(error)
+    console.log(error)
 })
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import Spinner from '../../components/UI/Spinner/Spinner';
+
 import Card from '../../components/UI/Card/Card';
 
 import classes from './User.module.css';
@@ -22,10 +22,12 @@ class User extends Component {
 				const name = response.data.user.name
 				const email = response.data.user.email
 				const role = response.data.user.role
+				const imageUrl = response.data.user.imageUrl
 				this.setState({
 					name: name,
 					email: email, 
-					role: role
+					role: role,
+					imageUrl: imageUrl
 				})
 			}).catch(error => {
 				console.log('Ops')
@@ -34,14 +36,12 @@ class User extends Component {
 	}
 
 	render() {
-		const userUrl = "https://avatars.githubusercontent.com/u/59183432?s=400&u=46341efa11c8339cbc376408f10d1cd2fce3246d&v=4"
 		return (
 			<Card>
-				<img className={classes.UserImage} src={userUrl} alt={this.state.name} />
+				<img className={classes.UserImage} src={this.state.imageUrl} alt={this.state.name} />
 				<h1 className={classes.Title}>{this.state.name}</h1>
 				<h2>{this.state.email}</h2>
-				{(this.state.role !==  null)?<h2>Cargo: {this.state.role}</h2>: null}
-				
+				<h2>Cargo: {this.state.role}</h2>
 			</Card>
 		);
 	}
@@ -53,10 +53,5 @@ const mapStateToProps = (state) => {
 		userId: state.login.userId
 	};
 };
-// const mapDispatchToProps = (dispatch) => {
-// 	return {
-// 		onLogin: (email, password) => dispatch(actions.login(email, password))
-// 	};
-// };
 
 export default connect(mapStateToProps, null)(User);

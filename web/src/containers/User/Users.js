@@ -48,6 +48,7 @@ const createRuleList = (users, role) => {
     if (user.role === role) {
       return user
     }
+    return null
   })
   if(list !== undefined){
     return list
@@ -62,7 +63,7 @@ const createListUI = (list, ListName) => {
       {list.map(user => {
         return (
           <li className={classes.User} key={user._id}>
-            <img src={user.imageUrl} />
+            <img src={user.imageUrl} alt={user.name}/>
             <div>
               <h3>{user.name}</h3>
               <p>{user.email}</p>
