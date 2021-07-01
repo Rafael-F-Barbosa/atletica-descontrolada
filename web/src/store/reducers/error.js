@@ -4,13 +4,14 @@ import updateObject from '../../utility/updateObject';
 
 const initialState = {
     hasError: false,
+    error: {}
 };
 
 const throwError = (state, action) => {
-    return updateObject(state, { hasError: true })
+    return updateObject(state, { hasError: true, error: action.error })
 }
 const endError = (state, action) => {
-    return updateObject(state, { hasError: false })
+    return updateObject(state, { hasError: false, error: {} })
 }
 
 const reducer = (state = initialState, action) => {

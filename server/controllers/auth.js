@@ -65,6 +65,9 @@ exports.login = async (req, res, next) => {
         if(!error.statusCode){
             error.statusCode = 500
         }
+        if(!error.message){
+            error.message = "Failed to login!"
+        }
         next(error)
     }
 }

@@ -1,8 +1,9 @@
 import * as actionTypes from './actionTypes';
 
-export const throwError = () => {
+export const throwError = (error) => {
 	return {
-		type: actionTypes.THROW_ERROR
+		type: actionTypes.THROW_ERROR,
+		error: error
 	};
 };
 

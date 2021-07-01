@@ -40,9 +40,8 @@ export const login = (email, password) => {
 				dispatch(loginSuccess(response.data.token, response.data.userId));
 			})
 			.catch((error) => {
-				console.log(error);
 				dispatch(loginFail(error.response.data.error));
-				dispatch(throwError())
+				dispatch(throwError(error.response.data))
 			});
 	};
 };
@@ -83,6 +82,7 @@ export const signUp = (data) => {
 			.catch((error) => {
 				console.log('Deu ruim.');
 				dispatch(signUpFail(error.response.data.error));
+				dispatch(throwError(error.response.data));
 			});
 	};
 };

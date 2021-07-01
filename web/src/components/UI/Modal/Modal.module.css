@@ -1,0 +1,44 @@
+.Modal{
+    position: fixed;
+    z-index: 150;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    background: white;
+    width: 35rem;
+    padding: 3rem;
+    border-radius: 0.6rem;
+    box-sizing: border-box;
+    min-height: 15rem;
+
+    border: 3px solid var(--main-panetone-color);
+
+    color: var(--main-panetone-color);
+
+}
+
+.Modal button{
+    background: var(--main-panetone-color);
+    cursor: pointer;
+    border-radius: 0.6rem;
+    width: 10rem;
+    height: 3rem;
+    border: 3px solid var(--main-panetone-color);   
+    color: white;
+    margin-top: 3rem;
+}
+.Modal button:hover{
+    transform: scale(1.05); 
+}
+
+
+@media (max-width: 500px){
+    .Modal{
+        width: 110%;
+        border-radius: none;
+    }
+		
+}

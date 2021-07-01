@@ -62,8 +62,6 @@ class Auth extends Component {
 	};
 
 	render() {
-		console.log(this.props.loading);
-
 		const formElementsArray = [];
 		for (let key in this.state.controls) {
 			formElementsArray.push({
@@ -85,12 +83,11 @@ class Auth extends Component {
 				}}
 			/>
 		));
-
 		let formOrSpinner = form;
 		if(this.props.loading){
 			formOrSpinner = <Spinner />
 		}
-
+		
 		return (
 			<FormCard>
 				<h1 className={classes.Title}>Login</h1>

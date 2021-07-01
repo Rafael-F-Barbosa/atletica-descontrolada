@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import classes from './Layout.module.css';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
+import Backdrop from '../../components/UI/Backdrop/Backdrop';
+import Modal from '../../components/UI/Modal/Modal'
+import * as actions from '../../store/actions/index';
 
 class Layout extends Component {
 	state = {
@@ -30,9 +33,13 @@ class Layout extends Component {
 					open={this.state.showSideDrawer}
 					closed={this.onSideDrawerClosedHandler}
 					/>
-					{this.props.error&&<h1>Error !</h1>}
+				<Backdrop
+					show={this.props.hasError}
+					clicked={this.props.closeModal}
+					/>
 					<main className={classes.Layout}>
 						{this.props.children}
+						{this.props.hasError&&<Modal message={this.props.error.message}close={this.props.closeModal}/>}
 					</main>
 			</Fragment>
 		);
@@ -41,10 +48,18 @@ class Layout extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		error: state.error.hasError
+		hasError: state.error.hasError,
+		error: state.error.error
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		closeModal: () => dispatch(actions.endError())
 	};
 };
 
 
 
-export default connect(mapStateToProps, null)(Layout) ;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout) ;
