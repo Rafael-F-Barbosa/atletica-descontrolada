@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
-import {throwError} from './index'
+import {throwModal} from './index'
 
 export const loginStart = () => {
 	return {
@@ -41,7 +41,7 @@ export const login = (email, password) => {
 			})
 			.catch((error) => {
 				dispatch(loginFail(error.response.data.error));
-				dispatch(throwError(error.response.data))
+				dispatch(throwModal(error.response.data.message))
 			});
 	};
 };
@@ -82,7 +82,7 @@ export const signUp = (data) => {
 			.catch((error) => {
 				console.log('Deu ruim.');
 				dispatch(signUpFail(error.response.data.error));
-				dispatch(throwError(error.response.data));
+				dispatch(throwModal(error.response.data.message));
 			});
 	};
 };

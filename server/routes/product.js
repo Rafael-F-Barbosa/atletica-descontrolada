@@ -7,12 +7,11 @@ const productController = require('../controllers/product')
 // Router initialization
 const router = express.Router() 
 
-// User routes
+// Products routes
 router.get('/', productController.products)
 
-
-// User routes
 router.post('/add', productController.addProducts)
 
+router.delete('/delete', productController.deleteProduct)
 
 module.exports = router

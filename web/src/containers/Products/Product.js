@@ -49,7 +49,9 @@ class Products extends Component {
                 <div className={classes.Products}>
                     {
                         this.state.products.map(product => {
-                            return (<Card key={product._id}>
+                            return (
+                            <Card key={product._id}>
+                                <div>X</div>
                                 <h1>{product.name}</h1>
                                 <img src={product.imageUrl} alt={product.name} />
                                 <h2>R$ {product.price.toFixed(2)}</h2>

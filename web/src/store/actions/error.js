@@ -1,14 +1,14 @@
 import * as actionTypes from './actionTypes';
 
-export const throwError = (error) => {
+export const throwModal = (message) => {
 	return {
-		type: actionTypes.THROW_ERROR,
-		error: error
+		type: actionTypes.THROW_MODAL,
+		message: message
 	};
 };
 
-export const endError = () => {
+export const closeModal = () => {
 	return {
-		type: actionTypes.END_ERROR
+		type: actionTypes.CLOSE_MODAL
 	};
 };

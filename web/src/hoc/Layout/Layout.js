@@ -32,12 +32,12 @@ class Layout extends Component {
 					closed={this.onSideDrawerClosedHandler}
 					/>
 				<Backdrop
-					show={this.props.hasError}
+					show={this.props.hasModal}
 					clicked={this.props.closeModal}
 					/>
 					<main className={classes.Layout}>
 						{this.props.children}
-						{this.props.hasError&&<Modal message={this.props.error.message}close={this.props.closeModal}/>}
+						{this.props.hasModal&&<Modal message={this.props.message}close={this.props.closeModal}/>}
 					</main>
 			</Fragment>
 		);
@@ -45,15 +45,16 @@ class Layout extends Component {
 }
 
 const mapStateToProps = (state) => {
+	console.log(state.error.message)
 	return {
-		hasError: state.error.hasError,
-		error: state.error.error
+		hasModal: state.error.hasModal,
+		message: state.error.message
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		closeModal: () => dispatch(actions.endError())
+		closeModal: () => dispatch(actions.closeModal())
 	};
 };
 

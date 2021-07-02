@@ -35,3 +35,7 @@ exports.addProducts = async (req, res, next) =>{
         next(error)
     }
 }
+
+exports.deleteProduct = async (req, res, next) =>{
+    console.log("Chegou no delete, irmão!")
+}

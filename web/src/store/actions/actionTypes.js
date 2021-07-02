@@ -9,6 +9,6 @@ export const SIGNUP_FAIL = 'SIGNUP_FAIL'
 
 export const LOGOUT = 'LOGOUT'
 
-// Error
-export const THROW_ERROR = 'THROW_ERROR'
-export const END_ERROR = 'END_ERROR'
+// Modal
+export const THROW_MODAL = 'THROW_MODAL'
+export const CLOSE_MODAL = 'CLOSE_MODAL'

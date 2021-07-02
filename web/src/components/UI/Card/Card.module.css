@@ -9,6 +9,19 @@
     border: 3px solid #000;
     border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
     box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #A9A9A9;
+    position: relative;
+}
+.Card div{
+    font-size: 2rem;
+    font-weight: bolder;
+    color: var(--main-panetone-color);
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+.Card div:hover{
+    transform: scale(1.2);
 }
 
 .Card:hover {

@@ -3,23 +3,23 @@ import updateObject from '../../utility/updateObject';
 
 
 const initialState = {
-    hasError: false,
-    error: {}
+    hasModal: false,
+    message: ''
 };
 
-const throwError = (state, action) => {
-    return updateObject(state, { hasError: true, error: action.error })
+const throwModal = (state, action) => {
+    return updateObject(state, { hasModal: true, message: action.message })
 }
-const endError = (state, action) => {
-    return updateObject(state, { hasError: false, error: {} })
+const closeModal = (state, action) => {
+    return updateObject(state, { hasModal: false, message: {} })
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.THROW_ERROR:
-            return throwError(state, action)
-        case actionTypes.END_ERROR:
-            return endError(state, action)
+        case actionTypes.THROW_MODAL:
+            return throwModal(state, action)
+        case actionTypes.CLOSE_MODAL:
+            return closeModal(state, action)
         default:
             return state;
     }
