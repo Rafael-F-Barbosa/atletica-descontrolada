@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import classes from './Product.module.css';
 import Card from '../../components/UI/Card/Card'
@@ -17,8 +17,10 @@ class Products extends Component {
         loading: false,
         addProduct: false,
         isAdmin: false,
-        deleteProduct: false
+        deleteProduct: false,
+        selectedProductId: ''
     };
+
     componentDidMount() {
         this.setState({ loading: true })
         const url = process.env.REACT_APP_BASE_URL + '/products'
@@ -39,41 +41,67 @@ class Products extends Component {
             })
 
     }
-    onAddProductHandler() {
-        this.setState({ addProduct: true })
+    onDeleteProduct = (productId) => {
+        this.setState({
+            deleteProduct: true,
+            selectedProductId: productId
+        })
+    }
+    closeModal = () => {
+        this.setState({
+            deleteProduct: false,
+            selectedProductId: ''
+        })
+    }
+    confirmDelete = () => {
+        this.setState({ loading: true })
+        const url = process.env.REACT_APP_BASE_URL + '/products/delete/' + this.state.selectedProductId
+        axios.delete(url)
+            .then((result) => {
+                this.setState({products: result.data.products})
+                this.setState({ loading: false })
+                this.closeModal()
+            }).catch((error) => {
+                console.log(error)
+                this.setState({ loading: false })
+                this.closeModal()
+            })
     }
     render() {
-        if (this.state.addProduct) {
-            return (<Redirect to="add-product" />)
-        }
         let productsOrSpinner = <Spinner />
         if (!this.state.loading) {
             productsOrSpinner = (
-                <div className={classes.Products}>
+                <ul className={classes.Products}>
                     {
                         this.state.products.map(product => {
                             return (
-                                <Fragment>
-                                    <Card key={product._id}>
-                                        {this.state.isAdmin && <div onClick={this.props.onDeleteProduct}>X</div>}
+                                <li key={product._id}>
+                                    <Card >
+                                        {this.state.isAdmin && <div onClick={this.onDeleteProduct.bind(this, product._id)}>X</div>}
                                         <h1>{product.name}</h1>
                                         <img src={product.imageUrl} alt={product.name} />
                                         <h2>R$ {product.price.toFixed(2)}</h2>
                                         <Button>Comprar</Button>
                                     </Card>
-                                    <Modal confirmButton message={"Textos asdasas"}/>
-                                </Fragment>
+                                </li>
                             )
-                            
+
                         })
                     }
-                </div>
+                </ul>
             )
         }
         return (
             <div className={classes.ProductsPage}>
                 {productsOrSpinner}
                 {this.state.isAdmin && <NavLink to="add-product">Add product</NavLink>}
+                {this.state.deleteProduct && <Modal
+                    confirmButton
+                    confirmAction={this.confirmDelete.bind(this, "LELEL")}
+                    message={"Certeza que deseja deletar esse produto? "}
+                    close={this.closeModal.bind(this)}
+
+                />}
             </div>
         );
     }

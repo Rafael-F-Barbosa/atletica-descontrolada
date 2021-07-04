@@ -37,5 +37,23 @@ exports.addProducts = async (req, res, next) =>{
 }
 
 exports.deleteProduct = async (req, res, next) =>{
-    console.log("Chegou no delete, irmão!")
+    const productId = req.params.productId
+    try{
+        const product = await Product.findById(productId)
+        if(!product){
+            const error = new Error('Could not find product.')
+            error.statusCode = 404
+            throw error
+        }
+        await Product.findByIdAndRemove(productId)
+        const products = await Product.find()
+        res.status(200).json({message: "Post deleted!", products: products})
+
+    }catch(error){
+        if (!error.statusCode) {
+            error.statusCode = 500
+        }
+        next(error)
+    }
+
 }
