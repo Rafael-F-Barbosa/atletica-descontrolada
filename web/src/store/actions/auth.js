@@ -41,7 +41,7 @@ export const login = (email, password) => {
 			})
 			.catch((error) => {
 				dispatch(loginFail(error.response.data.error));
-				dispatch(throwModal(error.response.data.message))
+				dispatch(throwModal({message: error.response.data.message}))
 			});
 	};
 };
@@ -82,7 +82,7 @@ export const signUp = (data) => {
 			.catch((error) => {
 				console.log('Deu ruim.');
 				dispatch(signUpFail(error.response.data.error));
-				dispatch(throwModal(error.response.data.message));
+				dispatch(throwModal({message: error.response.data.message}));
 			});
 	};
 };

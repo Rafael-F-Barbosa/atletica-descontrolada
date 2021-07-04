@@ -11,13 +11,13 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import loginReducer from './store/reducers/auth'
-import errorReducer from './store/reducers/error'
+import modalReducer from './store/reducers/modal'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
 	login: loginReducer,
-	error: errorReducer
+	modal: modalReducer
 })
 
 const store = createStore(

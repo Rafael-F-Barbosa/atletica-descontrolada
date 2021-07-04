@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import { Redirect, NavLink } from 'react-router-dom';
 
 import classes from './Product.module.css';
 import Card from '../../components/UI/Card/Card'
+import Modal from '../../components/UI/Modal/Modal'
 import Button from '../../components/UI/Button/Button'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import isUserAdmin from '../../utility/isUserAdmin'
+
 
 
 class Products extends Component {
@@ -14,7 +16,8 @@ class Products extends Component {
         products: [],
         loading: false,
         addProduct: false,
-        isAdmin: false
+        isAdmin: false,
+        deleteProduct: false
     };
     componentDidMount() {
         this.setState({ loading: true })
@@ -50,13 +53,18 @@ class Products extends Component {
                     {
                         this.state.products.map(product => {
                             return (
-                            <Card key={product._id}>
-                                <div>X</div>
-                                <h1>{product.name}</h1>
-                                <img src={product.imageUrl} alt={product.name} />
-                                <h2>R$ {product.price.toFixed(2)}</h2>
-                                <Button>Comprar</Button>
-                            </Card>)
+                                <Fragment>
+                                    <Card key={product._id}>
+                                        {this.state.isAdmin && <div onClick={this.props.onDeleteProduct}>X</div>}
+                                        <h1>{product.name}</h1>
+                                        <img src={product.imageUrl} alt={product.name} />
+                                        <h2>R$ {product.price.toFixed(2)}</h2>
+                                        <Button>Comprar</Button>
+                                    </Card>
+                                    <Modal confirmButton message={"Textos asdasas"}/>
+                                </Fragment>
+                            )
+                            
                         })
                     }
                 </div>
@@ -70,6 +78,7 @@ class Products extends Component {
         );
     }
 };
+
 
 
 export default Products;

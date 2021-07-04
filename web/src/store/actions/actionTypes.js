@@ -12,3 +12,5 @@ export const LOGOUT = 'LOGOUT'
 // Modal
 export const THROW_MODAL = 'THROW_MODAL'
 export const CLOSE_MODAL = 'CLOSE_MODAL'
+export const EXECUTE_ACTION = 'EXECUTE_ACTION'
+export const SET_MODAL_ACTION = 'SET_MODAL_ACTION'

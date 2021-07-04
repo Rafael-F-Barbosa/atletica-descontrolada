@@ -30,35 +30,41 @@ class Layout extends Component {
 				<SideDrawer
 					open={this.state.showSideDrawer}
 					closed={this.onSideDrawerClosedHandler}
-					/>
+				/>
 				<Backdrop
 					show={this.props.hasModal}
 					clicked={this.props.closeModal}
-					/>
-					<main className={classes.Layout}>
-						{this.props.children}
-						{this.props.hasModal&&<Modal message={this.props.message}close={this.props.closeModal}/>}
-					</main>
+				/>
+				<main className={classes.Layout}>
+					{this.props.children}
+					{this.props.hasModal && <Modal
+						confirmButton={this.props.confirmButton}
+						confirmAction={this.props.onConfirmAction}
+						message={this.props.message}
+						close={this.props.closeModal}
+					/>}
+				</main>
 			</Fragment>
 		);
 	}
 }
 
 const mapStateToProps = (state) => {
-	console.log(state.error.message)
 	return {
-		hasModal: state.error.hasModal,
-		message: state.error.message
+		hasModal: state.modal.hasModal,
+		message: state.modal.message,
+		confirmButton: state.modal.confirmButton
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		closeModal: () => dispatch(actions.closeModal())
+		closeModal: () => dispatch(actions.closeModal()),
+		onConfirmAction: () => dispatch(actions.executeAction())
 	};
 };
 
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout) ;
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

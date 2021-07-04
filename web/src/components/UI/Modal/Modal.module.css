@@ -19,26 +19,36 @@
     color: var(--main-panetone-color);
 
 }
-
+.Buttons{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
 .Modal button{
-    background: var(--main-panetone-color);
+    
     cursor: pointer;
     border-radius: 0.6rem;
     width: 10rem;
     height: 3rem;
-    border: 3px solid var(--main-panetone-color);   
+    
     color: white;
     margin-top: 3rem;
 }
 .Modal button:hover{
     transform: scale(1.05); 
 }
-
+.Modal button.Wrong{
+    background: var(--main-panetone-color);
+    border: 3px solid var(--main-panetone-color);   
+}
+.Modal button.Right{
+    background: green;
+    border: 3px solid green;   
+}
 
 @media (max-width: 500px){
     .Modal{
         width: 110%;
         border-radius: none;
     }
-		
 }
