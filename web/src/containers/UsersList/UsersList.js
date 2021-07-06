@@ -1,16 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
-import classes from './Users.module.css';
+import classes from './UsersList.module.css';
 import isUserAdmin from '../../utility/isUserAdmin'
-import editImg from '../../assets/images/edit-button.png'
+
 
 import Modal from '../../components/UI/Modal/Modal'
 import Input from '../../components/UI/Input/Input'
 import Backdrop from '../../components/UI/Backdrop/Backdrop';
+import User from '../../components/User/User'
 
 
-class Users extends Component {
+class UsersList extends Component {
   state = {
     users: [],
     loading: false,
@@ -145,16 +146,13 @@ const createListUI = (list, ListName, editUser, isAdmin) => {
       <ul className={classes.UsersList}>
         {list.map(user => {
           return (
-            <li className={classes.User} key={user._id}>
-              <img className={classes.ProfileImage} src={user.imageUrl} alt={user.name} />
-              <div>
-                <h3>{user.name}</h3>
-                <p>{user.email}</p>
-                <p>Cargo: {user.role}</p>
-              </div>
-              {isAdmin && <div><img onClick={() => { editUser(user._id) }} className={classes.EditButton} src={editImg} alt={"edit button"} /></div>}
-            </li>
-          )
+            <li key={user._id}>
+              <User
+                user={{ ...user }}
+                editUser={editUser}
+                isAdmin={isAdmin}
+              />
+            </li>)
         })}
       </ul>
     </Fragment>
@@ -163,4 +161,4 @@ const createListUI = (list, ListName, editUser, isAdmin) => {
 
 
 
-export default Users
+export default UsersList

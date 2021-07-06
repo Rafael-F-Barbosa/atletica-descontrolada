@@ -1,0 +1,63 @@
+.User{
+    display: flex;
+    max-width: 52rem;
+    width: 100%;
+    padding: 10px;
+    overflow: auto;
+    position: relative;
+    border-radius: 0.6rem;
+    margin-bottom: 2rem;
+    background: #eee;
+    min-height: 14rem;
+  }
+  .User div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 2rem;
+  
+  }
+   
+  .User > img {
+    max-width: 20rem;
+    max-height: 20rem;
+    object-fit: contain;
+    border-radius: 0.6rem;
+    border: 2px solid #AAA;
+    background-color: white;
+  }
+  .User h3{
+    font-size: 2rem;
+  }
+   
+  .User p {
+    font-weight: 200;
+    font-size: 1.6rem;
+    font-family: Georgia, Times New Roman, serif;
+  }
+  
+  .User:hover {
+    background: #ddd;
+  }
+  
+  .EditButton{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+  .EditButton:hover{
+    transform: scale(1.2);
+  }
+  
+  
+  @media (max-width: 600px){
+    .User{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: none;
+    }
+  }

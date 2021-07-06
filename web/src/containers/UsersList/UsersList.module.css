@@ -1,0 +1,22 @@
+.UsersPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.UsersPage h1{
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.UsersList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.UsersList li{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

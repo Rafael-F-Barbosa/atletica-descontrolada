@@ -1,0 +1,28 @@
+.UserContainer{
+  background: #ddd;
+  width: 100vw;
+  height: 100vh;
+  padding-top:  5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.UserImage{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 1rem solid var(--main-panetone-color);
+  background: white;
+}
+h1{
+  color: var(--main-panetone-color);
+  font-size: 3rem;
+  margin: 2rem 0;
+  text-transform: uppercase;
+}
+
+.UserContainer h2{
+  font-size: 2rem;
+  margin: 0.2rem 0;
+}
