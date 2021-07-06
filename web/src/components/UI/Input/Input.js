@@ -5,6 +5,10 @@ const input = (props) => {
 	let inputElement;
 	const inputClasses = [ classes.inputElement ];
 
+	if(props.className){
+		inputClasses.push(classes[props.className])
+	}
+
 	if (props.invalid && props.shouldValidate && props.touched) {
 		inputClasses.push(classes.Invalid);
 	}
@@ -22,10 +26,13 @@ const input = (props) => {
 			break;
 		case 'select':
 			inputElement = (
-				<select onChange={props.changed} className={inputClasses.join(' ')} value={props.value}>
+				<select 
+				onChange={props.changed} 
+				className={inputClasses.join(' ')} 
+				value={props.value}>
 					{props.elementConfig.options.map((option) => {
 						return (
-							<option key={option.value} value={option.value}>
+							<option key={option.value} value={option.value} selected={option.selected}>
 								{option.displayValue}
 							</option>
 						);

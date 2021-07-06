@@ -17,7 +17,7 @@ class Users extends Component {
     isAdmin: false,
     editUser: false,
     selectedUserId: '',
-    selectedRole: undefined
+    selectedRole: "Diretor"
   };
   componentDidMount() {
     this.setState({ loading: true })
@@ -48,7 +48,7 @@ class Users extends Component {
     this.setState({
       editUser: false,
       selectedUserId: '',
-      selectedRole: undefined,
+      selectedRole: "Diretor",
       loading: false
     })
   }
@@ -59,26 +59,24 @@ class Users extends Component {
     })
   }
   confirmEditRole = () => {
-    if(this.state.selectedRole){
-      this.setState({loading: true})  
-      const userId = this.state.selectedUserId
-      const selectedRole = this.state.selectedRole
-      const url = process.env.REACT_APP_BASE_URL + '/user/update/' + userId
-      axios.put(url, {
-        selectedRole: selectedRole
-      }).then(result=>{
-        const users = result.data.users
-        this.setState({
-          users: users
-        })
-        this.closeModal()
-      }).catch((err)=>{
-        console.log(err);
-      }).finally(()=>{
-        
-        this.closeModal()
+    this.setState({ loading: true })
+    const userId = this.state.selectedUserId
+    const selectedRole = this.state.selectedRole
+    const url = process.env.REACT_APP_BASE_URL + '/user/update/' + userId
+    axios.put(url, {
+      selectedRole: selectedRole
+    }).then(result => {
+      const users = result.data.users
+      this.setState({
+        users: users
       })
-    }
+      this.closeModal()
+    }).catch((err) => {
+      console.log(err);
+    }).finally(() => {
+
+      this.closeModal()
+    })
   }
 
   render() {
@@ -105,9 +103,10 @@ class Users extends Component {
             close={this.closeModal}
           >
             <Input
+              className={"Thin"}
               inputType={"select"}
               value={this.state.selectedRole}
-              changed={(role)=>{this.onChangeUserRole(role)}}
+              changed={(event) => { this.onChangeUserRole(event) }}
               elementConfig={
                 {
                   options: [
@@ -147,13 +146,13 @@ const createListUI = (list, ListName, editUser, isAdmin) => {
         {list.map(user => {
           return (
             <li className={classes.User} key={user._id}>
-              <img src={user.imageUrl} alt={user.name} />
+              <img className={classes.ProfileImage} src={user.imageUrl} alt={user.name} />
               <div>
                 <h3>{user.name}</h3>
                 <p>{user.email}</p>
                 <p>Cargo: {user.role}</p>
               </div>
-              {isAdmin&&<img onClick={() => { editUser(user._id) }} className={classes.EditButton} src={editImg} alt={"edit button"} />}
+              {isAdmin && <div><img onClick={() => { editUser(user._id) }} className={classes.EditButton} src={editImg} alt={"edit button"} /></div>}
             </li>
           )
         })}

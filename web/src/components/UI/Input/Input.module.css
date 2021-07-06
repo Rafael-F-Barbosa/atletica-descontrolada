@@ -11,7 +11,7 @@
 
 .inputElement {
 	outline: none;
-  height: 4rem;
+  	height: 4rem;
 	border: 1px solid #ccc;
 	font-size: 1.8rem;
 	font-family: 'Roboto', sans-serif;
@@ -30,4 +30,9 @@
 input:focus {
 	outline: none;
 	background-color: #ccc;
+}
+
+.Thin{
+	height: 3rem;
+	font-size: 1.5rem;
 }
