@@ -42,7 +42,7 @@ class UserProfile extends Component {
 					<h2>{this.state.email}</h2>
 					<h2>Cargo: {this.state.role}</h2>
 					<h1>Produtos Comprados</h1>
-					{this.state.products.length == 0 ? <p>Você ainda não comprou nada</p>: null}
+					{this.state.products.length === 0 ? <p>Você ainda não comprou nada</p>: null}
 					
 				</div>
 		);
