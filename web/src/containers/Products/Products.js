@@ -3,12 +3,11 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 import classes from './Products.module.css';
-import Card from '../../components/UI/Card/Card'
 import Modal from '../../components/UI/Modal/Modal'
 import Backdrop from '../../components/UI/Backdrop/Backdrop'
-import Button from '../../components/UI/Button/Button'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import isUserAdmin from '../../utility/isUserAdmin'
+import Product from './Product/Product'
 
 
 
@@ -76,15 +75,12 @@ class Products extends Component {
                     {
                         this.state.products.map(product => {
                             return (
-                                <li key={product._id}>
-                                    <Card >
-                                        {this.state.isAdmin && <div onClick={this.onDeleteProduct.bind(this, product._id)}>X</div>}
-                                        <h1>{product.name}</h1>
-                                        <img src={product.imageUrl} alt={product.name} />
-                                        <h2>R$ {product.price.toFixed(2)}</h2>
-                                        <Button>Comprar</Button>
-                                    </Card>
-                                </li>
+                                <Product
+                                    key={product._id}
+                                    onClickDeleteButton={this.onDeleteProduct.bind(this, product._id)}
+                                    product={{...product}}
+                                    isAdmin={this.state.isAdmin}
+                                />
                             )
 
                         })

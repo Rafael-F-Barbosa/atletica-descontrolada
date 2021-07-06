@@ -10,7 +10,7 @@ import Logout from './containers/Auth/Logout';
 import User from './containers/User/User';
 import Users from './containers/User/Users';
 import Products from './containers/Products/Products';
-import AddProducts from './containers/Products/AddProduct';
+import AddProducts from './containers/Products/AddProduct/AddProduct';
 import * as actions from './store/actions/index';
 
 class App extends Component {

@@ -1,4 +1,4 @@
-.Card{
+.Product{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +10,7 @@
     position: relative;
     background: #EEE;
 }
-.Card div{
+.Product div{
     font-size: 2rem;
     font-weight: bolder;
     font-family: monospace;
@@ -20,16 +20,16 @@
     right: 1rem;
     cursor: pointer;
 }
-.Card div:hover{
+.Product div:hover{
     transform: scale(1.3);
 }
 
-.Card:hover {
+.Product:hover {
     background: #DDD;
 }
 
 @media (max-width: 400px){
-    .Card{
+    .Product{
         margin: 0;
         padding: 1rem;
     }

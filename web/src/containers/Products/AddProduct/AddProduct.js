@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
-import Spinner from '../../components/UI/Spinner/Spinner';
-import FormCard from '../../components/UI/FormCard/FormCard';
+import Input from '../../../components/UI/Input/Input';
+import Button from '../../../components/UI/Button/Button';
+import Spinner from '../../../components/UI/Spinner/Spinner';
+import FormCard from '../../../components/UI/FormCard/FormCard';
 
-import updateObject from '../../utility/updateObject';
-import checkValidity from '../../utility/checkValidity';
-import * as actions from '../../store/actions/index';
+import updateObject from '../../../utility/updateObject';
+import checkValidity from '../../../utility/checkValidity';
+import * as actions from '../../../store/actions/index';
 
 import classes from './AddProduct.module.css';
 import axios from 'axios';
