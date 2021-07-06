@@ -10,5 +10,6 @@ const router = express.Router()
 // User routes
 router.get('/list', userController.users)
 router.get('/:userId', userController.user)
+router.put('/update/:userId', userController.updateRole)
 
 module.exports = router

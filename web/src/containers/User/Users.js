@@ -48,7 +48,8 @@ class Users extends Component {
     this.setState({
       editUser: false,
       selectedUserId: '',
-      selectedRole: undefined
+      selectedRole: undefined,
+      loading: false
     })
   }
   onChangeUserRole = (event) => {
@@ -59,17 +60,22 @@ class Users extends Component {
   }
   confirmEditRole = () => {
     if(this.state.selectedRole){
+      this.setState({loading: true})  
       const userId = this.state.selectedUserId
       const selectedRole = this.state.selectedRole
       const url = process.env.REACT_APP_BASE_URL + '/user/update/' + userId
       axios.put(url, {
         selectedRole: selectedRole
       }).then(result=>{
-        console.log(result.message);
-        console.log(result);
+        const users = result.data.users
+        this.setState({
+          users: users
+        })
         this.closeModal()
       }).catch((err)=>{
         console.log(err);
+      }).finally(()=>{
+        
         this.closeModal()
       })
     }
@@ -81,10 +87,10 @@ class Users extends Component {
     const associates = createRuleList([...this.state.users], "Associado")
     const noRules = createRuleList([...this.state.users], "Nenhum")
 
-    const directorsList = createListUI(directors, "Diretores", this.onEditUser) || []
-    const membersList = createListUI(members, "Membros", this.onEditUser) || []
-    const associatesList = createListUI(associates, "Associados", this.onEditUser) || []
-    const noRulesList = createListUI(noRules, "Sem cargo", this.onEditUser) || []
+    const directorsList = createListUI(directors, "Diretores", this.onEditUser, this.state.isAdmin) || []
+    const membersList = createListUI(members, "Membros", this.onEditUser, this.state.isAdmin) || []
+    const associatesList = createListUI(associates, "Associados", this.onEditUser, this.state.isAdmin) || []
+    const noRulesList = createListUI(noRules, "Sem cargo", this.onEditUser, this.state.isAdmin) || []
     return (
       <div className={classes.UsersPage}>
         {directors.length !== 0 && directorsList}
@@ -133,7 +139,7 @@ const createRuleList = (users, role) => {
   }
   return []
 }
-const createListUI = (list, ListName, editUser) => {
+const createListUI = (list, ListName, editUser, isAdmin) => {
   return (
     <Fragment>
       <h1>{ListName}</h1>
@@ -147,7 +153,7 @@ const createListUI = (list, ListName, editUser) => {
                 <p>{user.email}</p>
                 <p>Cargo: {user.role}</p>
               </div>
-              <img onClick={() => { editUser(user._id) }} className={classes.EditButton} src={editImg} alt={"edit button"} />
+              {isAdmin&&<img onClick={() => { editUser(user._id) }} className={classes.EditButton} src={editImg} alt={"edit button"} />}
             </li>
           )
         })}
