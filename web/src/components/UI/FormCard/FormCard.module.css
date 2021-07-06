@@ -6,7 +6,8 @@
     box-sizing: border-box;
     padding: 3rem;
     border-radius: 0.6rem;
-    box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #A9A9A9
+    box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #A9A9A9;
+    margin-top: 5rem;
 }
 .FormCard form{
     display: flex;

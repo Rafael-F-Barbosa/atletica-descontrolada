@@ -23,7 +23,7 @@
     max-height: 20rem;
     object-fit: contain;
     border-radius: 0.6rem;
-    border: 2px solid #AAA;
+    border: 0.3rem solid var(--main-panetone-color);
     background-color: white;
   }
   .User h3{
