@@ -15,6 +15,7 @@
 .User{
   display: flex;
   min-width: 50rem;
+  position: relative;
 }
 .User div{
   display: flex;
@@ -34,6 +35,17 @@
  
 .User p {
   font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+.EditButton{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+.EditButton:hover{
+  transform: scale(1.2);
 }
  
 .User {

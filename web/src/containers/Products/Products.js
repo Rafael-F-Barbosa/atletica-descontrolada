@@ -23,11 +23,11 @@ class Products extends Component {
 
     componentDidMount() {
         this.setState({ loading: true })
-        const url = process.env.REACT_APP_BASE_URL + '/products'
         const userId = localStorage.getItem('userId')
         isUserAdmin(userId).then((isUserAdmin) => {
             this.setState({ isAdmin: isUserAdmin })
         })
+        const url = process.env.REACT_APP_BASE_URL + '/products'
         axios.get(url)
             .then((response) => {
                 const products = [...response.data.products]
