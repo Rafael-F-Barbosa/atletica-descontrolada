@@ -6,24 +6,34 @@
     box-sizing: border-box;
     padding: 2rem;
     margin: 2rem;
-    border: 3px solid #000;
-    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
-    box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #A9A9A9;
+    /* border: 3px solid #000; */
+    /* box-shadow: 0.5rem 0.5rem 0.5rem 0.5rem #A9A9A9; */
+    border-radius: 0.6rem;
     position: relative;
+    background: #EEE;
 }
 .Card div{
     font-size: 2rem;
     font-weight: bolder;
+    font-family: monospace;
     color: var(--main-panetone-color);
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1rem;
+    right: 1rem;
     cursor: pointer;
 }
 .Card div:hover{
-    transform: scale(1.2);
+    transform: scale(1.3);
 }
 
 .Card:hover {
-    background: #eee;
+    background: #DDD;
+}
+
+@media (max-width: 400px){
+    .Card{
+        margin: 0;
+        padding: 1rem;
+    }
+
 }

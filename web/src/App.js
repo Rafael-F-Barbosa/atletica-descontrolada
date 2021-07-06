@@ -9,7 +9,7 @@ import Signup from './containers/Auth/Signup';
 import Logout from './containers/Auth/Logout';
 import User from './containers/User/User';
 import Users from './containers/User/Users';
-import Products from './containers/Products/Product';
+import Products from './containers/Products/Products';
 import AddProducts from './containers/Products/AddProduct';
 import * as actions from './store/actions/index';
 

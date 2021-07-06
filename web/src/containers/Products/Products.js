@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
-import classes from './Product.module.css';
+import classes from './Products.module.css';
 import Card from '../../components/UI/Card/Card'
 import Modal from '../../components/UI/Modal/Modal'
+import Backdrop from '../../components/UI/Backdrop/Backdrop'
 import Button from '../../components/UI/Button/Button'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import isUserAdmin from '../../utility/isUserAdmin'
@@ -95,18 +96,18 @@ class Products extends Component {
             <div className={classes.ProductsPage}>
                 {productsOrSpinner}
                 {this.state.isAdmin && <NavLink to="add-product">Add product</NavLink>}
-                {this.state.deleteProduct && <Modal
+                {this.state.deleteProduct && 
+                <Modal
                     confirmButton
-                    confirmAction={this.confirmDelete.bind(this, "LELEL")}
+                    confirmAction={this.confirmDelete.bind(this)}
                     message={"Certeza que deseja deletar esse produto? "}
                     close={this.closeModal.bind(this)}
 
                 />}
+                <Backdrop show={this.state.deleteProduct} clicked={this.closeModal} />
             </div>
         );
     }
 };
-
-
 
 export default Products;
