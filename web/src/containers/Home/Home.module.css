@@ -1,0 +1,51 @@
+.HomeContainer{
+    width: 100vw;
+    height: 100vh;
+    background: #CCC;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.HomeCenter{
+    width: 80%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+.Left{
+    margin: 10%;
+    position: relative;
+    background-image: url(/octopus.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.Title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 6rem;
+    color: var(--main-panetone-color);
+}
+.Right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Right h2{
+    font-size: 4.5rem;
+    text-align: justify;
+}
+.Right a{
+    margin-top: 2rem;
+}
+.Right img{
+    width: 5rem;
+    transition: .3s;
+}
+.Right img:hover{
+    transform: scale(1.1);
+}
