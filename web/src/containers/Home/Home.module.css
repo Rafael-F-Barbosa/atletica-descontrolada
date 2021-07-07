@@ -6,6 +6,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    position: fixed;
+    top: 6rem;
+    left: 0;
+}
+body > .HomeContainer{
+    overflow: hidden;
 }
 .HomeCenter{
     width: 80%;
@@ -48,4 +55,54 @@
 }
 .Right img:hover{
     transform: scale(1.1);
+}
+
+@media (max-width: 1350px){
+    .Right h2{
+        font-size: 4.0rem;
+    }
+}
+@media (max-width: 1150px){
+    .Right h2{
+        font-size: 3.5rem;
+    }
+}
+@media (max-width: 1050px){
+    .Right h2{
+        font-size: 3.0rem;
+    }
+    .Title{
+        font-size: 5rem;
+    }
+}
+@media (max-width: 850px){
+    .Right h2{
+        font-size: 2.5rem;
+    }
+    .HomeCenter{
+        width: 90%;
+        height: 70%;
+    }
+}
+@media (max-width: 750px){
+    .Right h2{
+        font-size: 2.2rem;
+    }
+    .HomeCenter{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 450px){
+    
+    .Title{
+        font-size: 3.5rem;
+    }
+}
+@media (max-width: 400px){
+    
+    .Title{
+        font-size: 3rem;
+    }
 }
