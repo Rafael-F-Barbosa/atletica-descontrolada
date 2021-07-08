@@ -8,6 +8,7 @@ import isUserAdmin from '../../utility/isUserAdmin'
 import Modal from '../../components/UI/Modal/Modal'
 import Input from '../../components/UI/Input/Input'
 import Backdrop from '../../components/UI/Backdrop/Backdrop';
+import Spinner from '../../components/UI/Spinner/Spinner'
 import User from '../../components/User/User'
 
 
@@ -90,12 +91,21 @@ class UsersList extends Component {
     const membersList = createListUI(members, "Membros", this.onEditUser, this.state.isAdmin) || []
     const associatesList = createListUI(associates, "Associados", this.onEditUser, this.state.isAdmin) || []
     const noRulesList = createListUI(noRules, "Sem cargo", this.onEditUser, this.state.isAdmin) || []
+
+    let componentToRender = <Spinner />
+    if (!this.state.loading) {
+      componentToRender = (
+        <Fragment>
+          {directors.length !== 0 && directorsList}
+          {members.length !== 0 && membersList}
+          {associates.length !== 0 && associatesList}
+          {noRules.length !== 0 && noRulesList}
+        </Fragment>
+      )
+    }
     return (
       <div className={classes.UsersPage}>
-        {directors.length !== 0 && directorsList}
-        {members.length !== 0 && membersList}
-        {associates.length !== 0 && associatesList}
-        {noRules.length !== 0 && noRulesList}
+        {componentToRender}
         {
           this.state.editUser && <Modal
             confirmButton
