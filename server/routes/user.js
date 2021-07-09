@@ -11,5 +11,6 @@ const router = express.Router()
 router.get('/list', userController.users)
 router.get('/:userId', userController.user)
 router.put('/update/:userId', userController.updateRole)
+router.put('/update/avatar/:userId', userController.updateImageUrl)
 
 module.exports = router

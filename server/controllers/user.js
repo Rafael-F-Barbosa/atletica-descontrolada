@@ -49,3 +49,19 @@ exports.updateRole = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.updateImageUrl = async (req, res, next) => {
+    const userId = req.params.userId
+    const imageUrl = req.body.imageUrl
+    try{
+        const user = await User.findOneAndUpdate({ _id: userId }, { imageUrl: imageUrl }, {useFindAndModify: false})
+        const users = await User.find()
+        res.status(200).json({ message: "User updated!", users: users})
+    }
+    catch(error){
+        if (!error.statusCode) {
+            error.statusCode = 500
+        }
+        next(error)
+    }
+}

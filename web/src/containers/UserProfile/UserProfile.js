@@ -19,16 +19,18 @@ class UserProfile extends Component {
 		role: null,
 		imageUrl: null,
 		loading: false,
+		userId: '',
 		products: [],
 		avatarsIconsIndex: 0
 	};
 	onHandleArrowLeft = () => {
 		const index = (this.state.avatarsIconsIndex + 1) % avatarsIcons.length
 		const imageUrl = avatarsIcons[index]
-		const url = process.env.REACT_APP_BASE_URL + '/user/update/avatar'
+		const url = process.env.REACT_APP_BASE_URL + '/user/update/avatar/' + this.state.userId
 		axios.put(url, {
 			imageUrl: imageUrl
 		}).then(result => {
+			console.log(result);
 			this.setState({ imageUrl: imageUrl, avatarsIconsIndex: index })
 		}).catch(error => {
 			console.log(error)
@@ -40,7 +42,7 @@ class UserProfile extends Component {
 			index = avatarsIcons.length - 1
 		}
 		const imageUrl = avatarsIcons[index]
-		const url = process.env.REACT_APP_BASE_URL + '/user/update/avatar'
+		const url = process.env.REACT_APP_BASE_URL + '/user/update/avatar/' + this.state.userId
 		axios.put(url, {
 			imageUrl: imageUrl
 		}).then(result => {
@@ -59,10 +61,12 @@ class UserProfile extends Component {
 				const email = response.data.user.email
 				const role = response.data.user.role
 				const imageUrl = response.data.user.imageUrl
+				const userId = response.data.user._id
 				this.setState({
 					name: name,
 					email: email,
 					role: role,
+					userId: userId,
 					imageUrl: imageUrl,
 					loading: false
 				})
