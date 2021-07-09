@@ -21,8 +21,11 @@ const user = new Schema({
     },
     imageUrl:{
         type: String,
-        default: "https://img.flaticon.com/icons/png/512/1998/1998728.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"
+        default: "https://image.flaticon.com/icons/png/512/1998/1998728.png"
     }
 })
+
+// https://image.flaticon.com/icons/png/512/2939/2939326.png
+// https://image.flaticon.com/icons/png/512/774/774834.png
 
 module.exports = mongoose.model('User', user)

@@ -7,6 +7,23 @@
   font-family: 'Roboto', sans-serif;
   padding-top: 5rem;
 }
+.ImageContainer{
+  position: relative;
+}
+.ArrowRight,
+.ArrowLeft{
+  position: absolute;
+  top: 45%;
+  cursor: pointer;
+  user-select: none;
+  font-size: 3rem;
+}
+.ArrowLeft{
+  left: 1rem;
+}
+.ArrowRight{
+  right: 1rem;
+}
 .UserImage{
   width: 200px;
   height: 200px;
