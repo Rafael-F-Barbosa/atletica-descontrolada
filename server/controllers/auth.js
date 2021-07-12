@@ -1,18 +1,25 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const { validationResult } = require('express-validator')
 
 const User = require('../models/user')
 
 
 exports.signup = async (req, res, next) => {
-    // Check validation
     const email = req.body.email
     const password = req.body.password
     const name = req.body.name
-    console.log(req.body)
+    const errors = validationResult(req)
     try {
-        const hasEmailBeenUsed = await User.findOne({email: email})
-        if(hasEmailBeenUsed !== null){
+        if (!errors.isEmpty()) {
+            const error = new Error('Validation Fail.')
+            error.statusCode = 422
+            error.data = errors.array()
+            console.log("sucessooo")
+            throw error
+        }
+        const hasEmailBeenUsed = await User.findOne({ email: email })
+        if (hasEmailBeenUsed !== null) {
             const error = new Error("Email already used!")
             error.statusCode = 403
             throw error
@@ -53,19 +60,20 @@ exports.login = async (req, res, next) => {
         }
         const token = await jwt.sign({
             email: loadedUser.email,
-            userId: loadedUser._id.toString()},
-            'somesupersecretesecret', {expiresIn: '2h'}
+            userId: loadedUser._id.toString()
+        },
+            'somesupersecretesecret', { expiresIn: '2h' }
         )
         res.status(200).json({
             token: token,
             userId: loadedUser._id.toString()
         })
 
-    } catch(error){
-        if(!error.statusCode){
+    } catch (error) {
+        if (!error.statusCode) {
             error.statusCode = 500
         }
-        if(!error.message){
+        if (!error.message) {
             error.message = "Failed to login!"
         }
         next(error)

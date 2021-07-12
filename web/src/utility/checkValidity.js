@@ -10,7 +10,6 @@ function checkValidity(value, rules, password=null){
 		isValid = value.match(/\S+@\S+\.\S+/)
 	}
 	if(rules.isEqual){
-		console.log(password, value)
 		isValid = value === password
 	}
 	return isValid;
