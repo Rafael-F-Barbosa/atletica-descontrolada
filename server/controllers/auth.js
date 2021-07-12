@@ -15,7 +15,6 @@ exports.signup = async (req, res, next) => {
             const error = new Error('Validation Fail.')
             error.statusCode = 422
             error.data = errors.array()
-            console.log("sucessooo")
             throw error
         }
         const hasEmailBeenUsed = await User.findOne({ email: email })

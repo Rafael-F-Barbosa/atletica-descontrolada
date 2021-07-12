@@ -56,7 +56,12 @@ class Products extends Component {
     confirmDelete = () => {
         this.setState({ loading: true })
         const url = process.env.REACT_APP_BASE_URL + '/products/delete/' + this.state.selectedProductId
-        axios.delete(url)
+        const token = localStorage.getItem('token')
+        axios.delete(url,{
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
             .then((result) => {
                 this.setState({products: result.data.products})
                 this.setState({ loading: false })

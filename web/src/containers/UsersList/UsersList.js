@@ -64,9 +64,14 @@ class UsersList extends Component {
     this.setState({ loading: true })
     const userId = this.state.selectedUserId
     const selectedRole = this.state.selectedRole
+    const token = localStorage.getItem('token')
     const url = process.env.REACT_APP_BASE_URL + '/user/update/' + userId
     axios.put(url, {
       selectedRole: selectedRole
+    },{
+      headers:{
+        Authorization: "Bearer " + token
+      }
     }).then(result => {
       const users = result.data.users
       this.setState({

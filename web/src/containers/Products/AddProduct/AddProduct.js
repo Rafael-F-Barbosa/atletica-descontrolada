@@ -73,17 +73,23 @@ class AddProduct extends Component {
 		event.preventDefault();
 		this.setState({ loading: true })
 		const url = process.env.REACT_APP_BASE_URL + '/products/add'
-		const name =this.state.controls.name.value
+		const name = this.state.controls.name.value
 		const price = this.state.controls.price.value
-		const imageUrl = this.state.controls.imageUrl.value 
-		axios.post(url,{
+		const imageUrl = this.state.controls.imageUrl.value
+		const token = localStorage.getItem('token')
+
+		axios.post(url, {
 			name: name,
 			price: price,
 			imageUrl: imageUrl
-		}).then((response)=>{
-			this.setState({loading:false})
+		}, {
+			headers: {
+				Authorization: "Bearer " + token
+			}
+		}).then((response) => {
+			this.setState({ loading: false })
 			console.log(response)
-		}).catch((error)=>{
+		}).catch((error) => {
 			console.log(error)
 		})
 

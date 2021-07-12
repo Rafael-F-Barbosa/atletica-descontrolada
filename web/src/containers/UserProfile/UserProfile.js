@@ -27,10 +27,14 @@ class UserProfile extends Component {
 		const index = (this.state.avatarsIconsIndex + 1) % avatarsIcons.length
 		const imageUrl = avatarsIcons[index]
 		const url = process.env.REACT_APP_BASE_URL + '/user/update/avatar/' + this.state.userId
+		const token = localStorage.getItem('token')
 		axios.put(url, {
 			imageUrl: imageUrl
+		},{
+			headers:{
+				Authorization: "Bearer " + token
+			}
 		}).then(result => {
-			console.log(result);
 			this.setState({ imageUrl: imageUrl, avatarsIconsIndex: index })
 		}).catch(error => {
 			console.log(error)
@@ -43,8 +47,13 @@ class UserProfile extends Component {
 		}
 		const imageUrl = avatarsIcons[index]
 		const url = process.env.REACT_APP_BASE_URL + '/user/update/avatar/' + this.state.userId
+		const token = localStorage.getItem('token')
 		axios.put(url, {
 			imageUrl: imageUrl
+		},{
+			headers:{
+				Authorization: "Bearer " + token
+			}
 		}).then(result => {
 			this.setState({ imageUrl: imageUrl, avatarsIconsIndex: index })
 		}).catch(error => {
@@ -55,7 +64,12 @@ class UserProfile extends Component {
 		this.setState({ loading: true })
 		const userId = this.props.userId
 		const url = process.env.REACT_APP_BASE_URL + '/user/' + userId
-		axios.get(url)
+		const token = localStorage.getItem('token')
+		axios.get(url,{
+			headers: {
+				Authorization: "Bearer " + token
+			}
+		})
 			.then((response) => {
 				const name = response.data.user.name
 				const email = response.data.user.email
