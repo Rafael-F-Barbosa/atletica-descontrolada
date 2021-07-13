@@ -78,6 +78,7 @@ export const signUp = (data) => {
 			.then((response) => {
 				console.log('criado', response);
 				dispatch(signUpSuccess());
+				dispatch(throwModal({message: "User created successfully"}))
 			})
 			.catch((error) => {
 				console.log('Deu ruim.');
