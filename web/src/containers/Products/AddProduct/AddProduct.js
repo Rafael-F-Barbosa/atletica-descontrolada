@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
-import Spinner from '../../../components/UI/Spinner/Spinner';
 import FormCard from '../../../components/UI/FormCard/FormCard';
 
 import updateObject from '../../../utility/updateObject';
@@ -88,6 +87,7 @@ class AddProduct extends Component {
 			}
 		}).then((response) => {
 			this.setState({ loading: false })
+			this.props.openModal({message: "Product created successfully!"})
 			console.log(response)
 		}).catch((error) => {
 			console.log(error)
@@ -118,17 +118,11 @@ class AddProduct extends Component {
 			/>
 		));
 
-		let formOrSpinner = form;
-		if (this.props.loading) {
-			formOrSpinner = <Spinner />
-		}
-
-
 		return (
 			<FormCard>
 				<h1 className={classes.Title}>Novo produto</h1>
 				<form onSubmit={this.submitHandler}>
-					{formOrSpinner}
+					{form}
 					<Button>Criar Produto</Button>
 				</form>
 			</FormCard>
@@ -136,15 +130,15 @@ class AddProduct extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		loading: state.login.loading
-	};
-};
+// const mapStateToProps = (state) => {
+// 	return {
+// 		loading: state.modal.hasModal
+// };
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onLogin: (email, password) => dispatch(actions.login(email, password))
+		closeModal: () => dispatch(actions.closeModal()),
+		openModal: (config) => dispatch(actions.throwModal(config))
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);
+export default connect(null, mapDispatchToProps)(AddProduct);

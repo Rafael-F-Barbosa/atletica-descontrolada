@@ -17,7 +17,7 @@
     border: 3px solid var(--main-panetone-color);
 
     color: var(--main-panetone-color);
-
+    margin-top: 5rem;
 }
 .Buttons{
     display: flex;
@@ -35,7 +35,7 @@
     height: 3rem;
     
     color: white;
-    margin-top: 3rem;
+    margin-top: .7rem;
 }
 .Modal button:hover{
     transform: scale(1.05); 
