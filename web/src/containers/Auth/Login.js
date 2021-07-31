@@ -34,7 +34,7 @@ class Auth extends Component {
 				elementType: 'input',
 				elementConfig: {
 					type: 'password',
-					placeholder: 'senha top'
+					placeholder: 'senha'
 				},
 				value: '',
 				validation: {

@@ -90,6 +90,7 @@ class AddProduct extends Component {
 			this.props.openModal({message: "Product created successfully!"})
 			console.log(response)
 		}).catch((error) => {
+			this.props.openModal({message: "Product creation failed."})
 			console.log(error)
 		})
 
@@ -130,13 +131,8 @@ class AddProduct extends Component {
 	}
 }
 
-// const mapStateToProps = (state) => {
-// 	return {
-// 		loading: state.modal.hasModal
-// };
 const mapDispatchToProps = (dispatch) => {
 	return {
-		closeModal: () => dispatch(actions.closeModal()),
 		openModal: (config) => dispatch(actions.throwModal(config))
 	};
 };
